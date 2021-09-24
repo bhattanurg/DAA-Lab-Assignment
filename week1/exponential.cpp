@@ -1,11 +1,11 @@
 #include<iostream>
 #include<vector>
 using namespace std;
-int binary_search(vector<int> v,int e){
-    int n=v.size(),t=0,beg=0,end=n-1,mid;
+int binary_search(vector<int> v,int beg,int end,int e){
+    int t=0,mid;
     while(beg<=end){
         t++;
-        mid=(beg+end)/2;
+        mid=beg+(end-beg)/2;
         if(v[mid]==e)
             return mid;
         else if(v[mid]<e)
@@ -21,7 +21,7 @@ int exp_search(vector<int> v,int e){
     int i=1,n=v.size();
     while(i<n && v[i]<=e)
         i=i*2;
-    return binary_search(v, e);
+    return binary_search(v, int(i/2),min(i,n-1), e);
 }
 int main(){
     int t;
